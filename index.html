@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>文字冒險遊戲</title>
+	<style>
+		.container {
+			display: none;
+			margin: 50px auto;
+			max-width: 500px;
+			text-align: center;
+		}
+		.button {
+			background-color: #4CAF50;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 20px;
+			margin-top: 50px;
+		}
+	</style>
+</head>
+<body>
+	<button class="button" onclick="startGame()">開始遊戲</button>
+	<div class="container" id="game-container">
+		<p>歡迎來到文字冒險遊戲！</p>
+		<p>你現在身處在一個神秘的地方，你必須找到一種方法來逃離這裡。</p>
+		<button class="button" onclick="nextStep()">下一步</button>
+	</div>
+	<script>
+		function startGame() {
+			document.getElementById("game-container").style.display = "block";
+			document.querySelector(".button").style.display = "none";
+		}
+
+		function nextStep() {
+			var currentStep = document.querySelector("#game-container p:last-of-type");
+			if (currentStep.innerHTML === "你找到了一把鑰匙！") {
+				alert("你成功逃離了這個地方！");
+				location.reload();
+			} else if (currentStep.innerHTML === "你發現這扇門被鎖住了。") {
+				currentStep.innerHTML = "你找到了一把鑰匙！";
+				document.querySelector(".button").innerHTML = "逃離這裡";
+			} else {
+				currentStep.innerHTML = "你發現這扇門被鎖住了。";
+			}
+		}
+	</script>
+</body>
+</html>
